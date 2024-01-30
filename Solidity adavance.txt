@@ -1,0 +1,227 @@
+1)array 
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract array{
+    uint[3] public arr1=[1,2,3];
+    function arrmul(uint[3] memory mul) public pure returns(uint[3] memory){
+        for(uint i=0;i<=2;i++){
+          mul[i] = 2*mul[i];
+    }
+          return mul;
+    }
+    function arrview() public view returns(uint[3] memory){
+          return arr1;
+    }
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+2)Call data memory
+->to write argumets we use memory
+->call data is only for reading purspose
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+// memory argumemts are mutable
+// calldata arguments are immutable
+contract array{
+    uint[3] public arr1=[1,2,3];
+    function arrmul(uint[3] memory mul, uint[3] calldata call) public pure returns(uint[3] memory){
+        for(uint i=0;i<=2;i++){
+          mul[i] = call[i];//call data argumets we are just using not writing
+    }
+          return mul;
+    }
+    function arrview() public view returns(uint[3] memory){
+          return arr1;
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+3)using pointer for storage keyword
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+// memory argumemts are mutable
+// calldata arguments are immutable
+//by using storage we can the value of that pointer of value in entire code but we use memory we can not , it will chnage at once only
+//storage key word->pointer
+contract array{
+   uint[3] public arr=[3,5,6];
+   function changearr() public{
+       arr[1]=22;
+       uint[3] storage str = arr;
+       str[0] =100;
+   }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+4)push and pop in arrey
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract Darray{
+    uint[] public arr1;
+    function addval() public {
+        arr1.push(10);
+        arr1.push(15);
+        arr1.push(24);
+        arr1.push(45);
+
+    }
+
+    function rarr() public{
+        arr1.pop();
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+5)push pop ex
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract Darray{
+    uint[] public arr1;
+    function addval(uint val) public {
+        arr1.push(val);
+
+    }
+
+    function rarr() public{
+        arr1.pop();
+    }
+    function view1() public view returns(uint[] memory){
+        return arr1;
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+6)String compare and concat
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract string1{
+    string public str="vansi";
+   
+   function sttcac(string calldata s1, string calldata s2) public pure returns(bool){
+         if(keccak256(abi.encodePacked(s1)) == keccak256(abi.encodePacked(s2))){
+             return true;
+         }
+         else{
+             return false;
+         }
+   }
+   function concat(string memory s1, string memory s2) public pure returns(string memory){
+         string memory s3 = string.concat(s1,s2);
+
+         return s3;
+   } 
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+7)Using struct
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract struct1{
+    struct emp{
+        string empname;
+        uint empid;
+        string designation;
+    }
+    emp public e;
+    function insert(string memory _empname, uint  _empid, string memory _designation)public {
+            e.empname = _empname;
+            e.empid = _empid;
+            e.designation = _designation;
+
+    }
+    function display() public view  returns(emp memory){
+          return e;
+
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8)Using array in struct
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract struct1{
+    struct emp{
+        string empname;
+        uint empid;
+        string designation;
+        uint[] arr;
+    }
+    emp public e;
+    function insert(string memory _empname, uint  _empid, string memory _designation)public {
+            e.empname = _empname;
+            e.empid = _empid;
+            e.designation = _designation;
+            
+
+    }
+
+    function insertarr(uint[] memory arrvar) public {
+        for(uint i=0;i<arrvar.length;i++){
+           e.arr.push(arrvar[i]);
+        }
+    }
+    function display() public view  returns(emp memory){
+          return e;
+
+    }
+    function disarray()  public view returns(uint[] memory){
+          return e.arr;
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9) Struct array
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+contract struct1{
+    struct emp{
+        string empname;
+        uint empid;
+        string designation;
+       
+    }
+    emp[3] public e;
+    function insert(uint index,string calldata _empname, uint _empid,string memory _designation) public {
+            //uint i=0;
+            e[index] = emp(_empname,_empid,_designation);
+
+     }
+
+     function display(uint index)public view returns(string memory){
+         return e[index].empname;
+     }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10)Mapping basic code
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.8.2 <0.9.0;
+
+contract map{
+
+    mapping(uint=>uint) public sai;
+
+   function insert(uint key, uint val) public {
+       sai[key] = val;
+   }
+   function display(uint key) public view returns(uint){
+       return sai[key];
+   }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
