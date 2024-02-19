@@ -1,0 +1,66 @@
+//Fetching balance
+
+const {Web3} = require('web3');
+let web3 = new  Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"))//way to connect with bockchain
+
+const connectBlockchain =async()=>{
+    const bal = await web3.eth.getBalance("0xC5f6796bbd8aeb9e9Acc19aa5Dda81bB5AEBbfe3");
+    const ethbal = web3.utils.fromWei(bal,"ether")//converting wei to ether
+    const weibal = web3.utils.toWei(bal,"ether")//convertingg eth to wei
+    console.log(ethbal);
+    console.log(weibal);
+
+}
+connectBlockchain()
+--------------------------------------------------------------------------------------------------------------------------
+
+//Sending balanced from to address
+
+const {Web3} = require('web3');//importing web3 librarires
+let web3 = new  Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"))
+
+const sendeth = async()=>{//sending transaction from address to add
+    const ethval = web3.utils.toWei("1","ether");
+    await web3.eth.sendTransaction({
+        from:"0xC5f6796bbd8aeb9e9Acc19aa5Dda81bB5AEBbfe3",
+        to:"0x9FEAefD637Aa67304806636C43d6Fc1f08cA704a",
+        value:ethval
+    })
+}
+
+sendeth()
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+//read contract.
+
+const {Web3} = require('web3');//importing web3 librarires
+let web3 = new  Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"))
+const ABI=require("./abi1.json")
+
+const contract =async()=>{
+    const contractadd = "0x75CFC7B86168ceb7c5a693D9245a99bE7D91e10e"//contract stored block address
+    const contractinstance = new web3.eth.Contract(ABI,contractadd)
+    const value = await contractinstance.methods.get().call()//call the get function
+    console.log(value.toString())
+}
+contract()
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//write contract
+
+const {Web3} = require('web3');//importing web3 librarires
+let web3 = new  Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"))
+const ABI=require("./abi1.json")
+
+const contract =async()=>{
+    const contractadd = "0x75CFC7B86168ceb7c5a693D9245a99bE7D91e10e"
+    const contractinstance = new web3.eth.Contract(ABI,contractadd)
+    const value = await contractinstance.methods.set(12).send({from:"0x7530e0999DFA523Ca2AC9339A5c492fe6738337c"})//call the get function
+    
+}
+contract()
+
+---------------------------------------------------------------------------------------------------------------------------------------------------

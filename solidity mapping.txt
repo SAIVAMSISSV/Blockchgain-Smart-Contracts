@@ -1,0 +1,12 @@
+contract demo{
+   mapping(uint=>string) public map;
+
+   function insert(uint key, string memory name) public {
+      map[key]=name;
+   }
+
+   function show(uint key)public view returns(string memory){
+      return map[key];
+   }
+
+}
