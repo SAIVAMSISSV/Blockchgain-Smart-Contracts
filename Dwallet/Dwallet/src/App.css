@@ -1,0 +1,46 @@
+body {
+  background-color: #2D313A; /* Dark background */
+  color: #f5f5f5; /* Light text color */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.Flex {
+  color: #f5f5f5; /* Light text color */
+  background-image: linear-gradient(#87ceeb, #43365a); /* Gradient background */
+  width: 600px;
+  height: 470px;
+  margin-top: 30px;
+  border-radius: 15px;
+  border: 2px solid #7950b3; /* Border color */
+  box-shadow: 0 0.1px 8px rgba(255, 255, 255, 0.465);
+}
+
+.welMargin {
+  color: #f5f5f5; /* Light text color */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.Account {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.container {
+  width: 100%; /* Set width to 100% to fill the remaining space */
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(4,30,73); /* White background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
